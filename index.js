@@ -45,3 +45,36 @@ router.post('/jogadores', auth,(req,res)=>{
 });
 
 module.exports = router;
+
+
+const express = require('express');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const app = express();
+const routes = require('../routes');
+
+const expressApp = express();
+
+expressApp.use(express.urlencoded({ extended: true }));
+expressApp.use(cookieParser());
+
+expressApp.use(
+  session({
+    secret: "secret123",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 30 * 60 * 1000,
+    },
+  })
+);
+
+expressApp.set("view engine", "ejs");
+expressApp.set("views", path.join(__dirname, "..", "views"));
+
+expressApp.use(express.static(path.join(__dirname, "..", "public")));
+
+expressApp.use("/", routes);
+
+module.exports = expressApp;
