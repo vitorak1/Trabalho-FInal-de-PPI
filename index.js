@@ -1,4 +1,14 @@
-
+/api
+   index.js
+/routes
+   index.js
+/views
+   *.ejs
+/public
+   *.css, imagens...
+package.json
+vercel.json
+README.md
 const express = require('express');
 const router = express.Router();
 
