@@ -1,0 +1,1 @@
+<h1>Equipes</h1><% if(erro){ %><p><%= erro %></p><% } %><form method='post'><input name='nome'/><input name='capitao'/><input name='contato'/><button>Salvar</button></form><ul><% equipes.forEach(e=>{ %><li><%= e.nome %></li><% }) %></ul>
